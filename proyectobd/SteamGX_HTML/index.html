@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Steam GX | Tienda de Juegos</title>
+
+  <!-- Fuente gamer -->
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;600&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css" />
+</head>
+
+<body>
+  <!-- NAVBAR -->
+  <header class="navbar">
+    <div class="logo">Steam<span>GX</span></div>
+    <nav>
+      <ul>
+        <li><a href="#" onclick="showSection('inicio')">Inicio</a></li>
+        <li><a href="#" onclick="showSection('tienda')">Tienda</a></li>
+        <li><a href="#" onclick="showSection('categorias')">Categorías</a></li>
+        <li><a href="#" onclick="showSection('soporte')">Soporte</a></li>
+        <li><a href="#" onclick="showSection('biblioteca')">Biblioteca</a></li>
+      </ul>
+    </nav>
+    <div class="nav-right">
+      <button id="cartButton" class="cart-btn">
+        🛒 <span id="cartCount" class="cart-count">0</span>
+      </button>
+      <div class="login-btn">
+        <button id="loginButton">Iniciar Sesión</button>
+        <div id="accountMenu" class="account-menu" style="display:none;">
+          <span id="accountName"></span>
+          <span id="accountSaldo" class="saldo-tag"></span>
+          <button id="rechargeButton" class="small-btn">+ Saldo</button>
+          <button id="logoutButton" class="small-btn">Salir</button>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- CONTENIDO PRINCIPAL -->
+  <main>
+    <!-- INICIO -->
+    <section id="inicio" class="section active">
+      <div class="hero">
+        <h1>Bienvenido a Steam GX</h1>
+        <p>Tu universo gamer definitivo. Descubre, compra y juega títulos increíbles.</p>
+
+        <div class="downloads">
+          <h3>Disponible para:</h3>
+          <div class="download-buttons">
+            <button><img src="https://cdn-icons-png.flaticon.com/512/888/888882.png" alt=""> Windows</button>
+            <button><img src="https://cdn-icons-png.flaticon.com/512/518/518713.png" alt=""> Linux</button>
+            <button><img src="https://cdn.osxdaily.com/wp-content/uploads/2014/06/finder-icon.png" alt=""> Mac</button>
+          </div>
+        </div>
+
+        <button class="cta" onclick="showSection('tienda')">Explorar Tienda</button>
+      </div>
+    </section>
+
+    <!-- TIENDA -->
+    <section id="tienda" class="section">
+      <h2>Tienda de Juegos</h2>
+      <div id="store-container" class="games-grid"></div>
+    </section>
+
+    <!-- CATEGORÍAS -->
+    <section id="categorias" class="section">
+      <h2>Categorías</h2>
+      <div class="categories-list">
+        <button onclick="showCategory('Acción')">Acción</button>
+        <button onclick="showCategory('Aventura')">Aventura</button>
+        <button onclick="showCategory('RPG')">RPG</button>
+        <button onclick="showCategory('Estrategia')">Estrategia</button>
+        <button onclick="showCategory('Indie')">Indie</button>
+      </div>
+      <div id="category-container" class="games-grid"></div>
+    </section>
+
+    <!-- DETALLE DE JUEGO -->
+    <section id="detalle" class="section">
+      <button class="back-btn" onclick="showSection('categorias')">← Volver</button>
+      <div id="game-detail"></div>
+    </section>
+
+    <!-- BIBLIOTECA -->
+    <section id="biblioteca" class="section">
+      <div id="biblioteca-container"></div>
+    </section>
+
+    <!-- SOPORTE -->
+    <section id="soporte" class="section">
+      <h2>Soporte</h2>
+      <p>¿Tienes problemas? Escríbenos a <a href="mailto:soporte@steamgx.com" class="mail">soporte@steamgx.com</a></p>
+    </section>
+  </main>
+
+  <footer>© 2025 SteamGX — Proyecto educativo inspirado en Steam y Opera GX.</footer>
+
+  <!-- PANEL CARRITO -->
+  <div class="cart-overlay" id="cartOverlay"></div>
+  <aside class="cart-panel" id="cartPanel">
+    <div class="cart-header">
+      <h3>Tu carrito</h3>
+      <span id="closeCart">&times;</span>
+    </div>
+    <div id="cartItems" class="cart-items"></div>
+    <div class="cart-footer">
+      <div class="cart-total">Total: <span id="cartTotal">$0.00</span></div>
+      <button id="checkoutButton" class="cta">Finalizar compra</button>
+    </div>
+  </aside>
+
+  <!-- MODAL RECARGA DE SALDO -->
+  <div id="rechargeModal" class="modal">
+  <div class="modal-content pasarela-content">
+    <span class="close-btn" id="closeRecharge">&times;</span>
+    <h2>Pasarela de Pago Segura</h2>
+    <p class="subtitle">Introduce los datos de tu tarjeta de crédito o débito</p>
+
+    <form id="rechargeForm">
+      <div class="form-group">
+        <label>Titular de la Tarjeta</label>
+        <input type="text" placeholder="Nombre impreso en la tarjeta" required autocomplete="off">
+      </div>
+
+      <div class="form-group">
+        <label>Número de Tarjeta</label>
+        <input type="text" id="cardNumber" placeholder="0000 0000 0000 0000" maxlength="19" required autocomplete="off">
+      </div>
+
+      <div class="form-row">
+        <div class="form-group half">
+          <label>Vencimiento</label>
+          <input type="text" id="cardExpiry" placeholder="MM/AA" maxlength="5" required autocomplete="off">
+        </div>
+        <div class="form-group half">
+          <label>CVV / CVC</label>
+          <input type="password" id="cardCvv" placeholder="123" maxlength="3" required autocomplete="off">
+        </div>
+      </div>
+
+      <div class="form-group monto-group">
+        <label>Monto a Recargar ($ USD)</label>
+        <input type="number" id="rechargeAmount" min="5" max="1000" step="0.01" placeholder="Monto mínimo $5.00" required>
+      </div>
+
+      <button type="submit" class="btn-pagar" id="btnPagarTexto">Procesar Pago Seguro</button>
+    </form>
+  </div>
+</div>
+
+  <!-- MODAL LOGIN MEJORADO -->
+  <div class="modal" id="loginModal">
+    <div class="modal-content">
+      <span id="closeModal">&times;</span>
+
+      <!-- LOGIN -->
+      <div id="login-section" class="modal-section active">
+        <h2>Iniciar Sesión</h2>
+        <form id="loginForm">
+          <input type="text" placeholder="Usuario" required>
+          <input type="password" placeholder="Contraseña" required>
+          <button type="submit">Entrar</button>
+        </form>
+        <p class="modal-links">
+          <a href="#" onclick="toggleModalSection('register-section')">Crear cuenta</a> |
+          <a href="#" onclick="toggleModalSection('forgot-section')">¿Olvidaste tu contraseña?</a>
+        </p>
+      </div>
+
+      <!-- REGISTRO -->
+      <div id="register-section" class="modal-section">
+        <h2>Crear Cuenta</h2>
+        <form id="registerForm">
+          <input type="text" placeholder="Usuario" required>
+          <input type="email" placeholder="Correo electrónico" required>
+          <input type="password" placeholder="Contraseña" required>
+          <button type="submit">Registrarse</button>
+        </form>
+        <p class="modal-links"><a href="#" onclick="toggleModalSection('login-section')">Ya tengo cuenta</a></p>
+      </div>
+
+      <!-- OLVIDASTE CONTRASEÑA -->
+      <div id="forgot-section" class="modal-section">
+        <h2>Recuperar Contraseña</h2>
+        <form id="forgotForm">
+          <input type="email" placeholder="Ingresa tu correo" required>
+          <button type="submit">Enviar enlace</button>
+        </form>
+        <p class="modal-links"><a href="#" onclick="toggleModalSection('login-section')">Volver</a></p>
+      </div>
+    </div>
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>

@@ -1,0 +1,575 @@
+:root {
+  --bg-dark: #0f0f1a;
+  --bg-panel: #1a1a2e;
+  --accent: #ff0055;
+  --accent2: #7700ff;
+  --text: #f5f5f5;
+  --muted: #9a9a9a;
+  --radius: 8px;
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+body {
+  background: radial-gradient(circle at top, #1b0030, #0a0a14);
+  color: var(--text);
+  font-family: 'Poppins', sans-serif;
+  overflow-x: hidden;
+}
+
+/* --- NAVBAR --- */
+header.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 15px 30px;
+  background: linear-gradient(90deg, #1a1a2e, #101018);
+  border-bottom: 2px solid var(--accent);
+  position: sticky;
+  top: 0;
+  z-index: 10;
+}
+
+.logo {
+  font-family: 'Orbitron', sans-serif;
+  font-size: 1.8em;
+  font-weight: 600;
+  color: var(--accent);
+}
+.logo span { color: var(--accent2); }
+
+nav ul {
+  display: flex;
+  list-style: none;
+  gap: 20px;
+}
+nav ul li a {
+  text-decoration: none;
+  color: var(--text);
+  transition: 0.3s;
+  font-weight: 500;
+}
+nav ul li a:hover { color: var(--accent); }
+
+.login-btn button {
+  background: linear-gradient(90deg, var(--accent), var(--accent2));
+  border: none;
+  padding: 8px 16px;
+  border-radius: var(--radius);
+  color: white;
+  cursor: pointer;
+  font-weight: 600;
+  transition: 0.3s;
+}
+.login-btn button:hover { opacity: 0.85; }
+
+/* --- HERO --- */
+.hero {
+  text-align: center;
+  padding: 100px 20px;
+  background: linear-gradient(135deg, #1a002a, #000);
+  border-radius: var(--radius);
+  box-shadow: 0 0 30px rgba(255, 0, 85, 0.3);
+}
+.hero h1 {
+  font-family: 'Orbitron', sans-serif;
+  font-size: 2.5em;
+  color: var(--accent);
+}
+.hero p { color: var(--muted); margin-top: 10px; }
+.hero .cta {
+  margin-top: 30px;
+  background: linear-gradient(90deg, var(--accent), var(--accent2));
+  border: none;
+  padding: 12px 30px;
+  border-radius: var(--radius);
+  color: white;
+  font-weight: 600;
+  cursor: pointer;
+  font-size: 1em;
+}
+
+/* --- DESCARGAS --- */
+.downloads { margin-top: 40px; }
+.download-buttons {
+  display: flex;
+  justify-content: center;
+  gap: 15px;
+  margin-top: 10px;
+}
+.download-buttons button {
+  background: none;
+  border: 1px solid var(--accent);
+  color: var(--text);
+  padding: 8px 14px;
+  border-radius: var(--radius);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  transition: 0.3s;
+}
+.download-buttons button:hover { background: var(--accent); }
+.download-buttons img { width: 20px; height: 20px; }
+
+/* --- CONTENIDO --- */
+.section { display: none; padding: 40px 20px; }
+.section.active { display: block; }
+
+/* --- JUEGOS --- */
+.games-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 20px;
+}
+.game {
+  background-color: var(--bg-panel);
+  border-radius: var(--radius);
+  overflow: hidden;
+  text-align: center;
+  transition: 0.3s;
+  border: 2px solid transparent;
+}
+.game:hover {
+  border-color: var(--accent);
+  transform: translateY(-5px);
+  box-shadow: 0 0 15px rgba(255, 0, 85, 0.3);
+}
+.game img {
+  width: 100%;
+  height: 150px;
+  object-fit: cover;
+}
+.game h3 { margin: 10px 0 5px; color: var(--accent2); }
+.game p { color: var(--muted); font-size: 0.9em; }
+.game button {
+  margin: 10px 0 15px;
+  background: linear-gradient(90deg, var(--accent), var(--accent2));
+  border: none;
+  padding: 8px 15px;
+  border-radius: var(--radius);
+  cursor: pointer;
+  color: white;
+  font-weight: 600;
+}
+
+/* --- CATEGORÍAS --- */
+.categories-list {
+  text-align: center;
+  margin-bottom: 30px;
+}
+.categories-list button {
+  margin: 5px;
+  background: none;
+  border: 1px solid var(--accent2);
+  color: var(--text);
+  padding: 8px 16px;
+  border-radius: var(--radius);
+  cursor: pointer;
+  transition: 0.3s;
+}
+.categories-list button:hover { background: var(--accent2); }
+
+/* --- DETALLE --- */
+#game-detail {
+  text-align: center;
+  background: var(--bg-panel);
+  padding: 30px;
+  border-radius: var(--radius);
+  box-shadow: 0 0 20px rgba(255, 0, 85, 0.3);
+}
+#game-detail img {
+  width: 300px;
+  border-radius: var(--radius);
+  margin-bottom: 20px;
+}
+.requisitos {
+  background-color: #111122;
+  padding: 15px;
+  border-radius: var(--radius);
+  margin-top: 15px;
+  color: var(--muted);
+}
+.back-btn {
+  margin-bottom: 15px;
+  background: none;
+  border: 1px solid var(--accent);
+  color: var(--accent);
+  padding: 6px 14px;
+  border-radius: var(--radius);
+  cursor: pointer;
+}
+
+/* --- MODAL LOGIN --- */
+.modal {
+  display: none;
+  position: fixed;
+  inset: 0;
+  background-color: rgba(0,0,0,0.7);
+  justify-content: center;
+  align-items: center;
+}
+.modal-content {
+  background-color: var(--bg-panel);
+  padding: 30px;
+  border-radius: var(--radius);
+  width: 300px;
+  position: relative;
+  box-shadow: 0 0 20px rgba(255, 0, 85, 0.3);
+}
+#closeModal {
+  position: absolute;
+  right: 10px;
+  top: 10px;
+  cursor: pointer;
+  color: var(--accent);
+  font-size: 1.3em;
+}
+.modal input {
+  width: 100%;
+  margin: 8px 0;
+  padding: 8px;
+  border: none;
+  border-radius: var(--radius);
+  background-color: #111122;
+  color: white;
+}
+.modal button {
+  width: 100%;
+  padding: 8px;
+  margin-top: 10px;
+  background: linear-gradient(90deg, var(--accent), var(--accent2));
+  border: none;
+  border-radius: var(--radius);
+  color: white;
+  cursor: pointer;
+  font-weight: 600;
+}
+.modal-section { display: none; }
+.modal-section.active { display: block; }
+.modal-links {
+  text-align: center;
+  margin-top: 10px;
+}
+.modal-links a {
+  color: var(--accent);
+  text-decoration: none;
+  font-size: 0.9em;
+}
+.modal-links a:hover { text-decoration: underline; }
+
+footer {
+  text-align: center;
+  padding: 20px;
+  color: var(--muted);
+  border-top: 1px solid #222;
+  margin-top: 50px;
+}
+
+/* --- BOTÓN CTA GENÉRICO (usable fuera de .hero) --- */
+.cta {
+  background: linear-gradient(90deg, var(--accent), var(--accent2));
+  border: none;
+  border-radius: var(--radius);
+  color: white;
+  font-weight: 600;
+  cursor: pointer;
+  padding: 12px 30px;
+  font-size: 1em;
+}
+.cta:hover { opacity: 0.85; }
+
+.nav-right {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  position: relative;
+}
+.cart-btn {
+  position: relative;
+  background: none;
+  border: 1px solid var(--accent2);
+  color: var(--text);
+  padding: 8px 14px;
+  border-radius: var(--radius);
+  cursor: pointer;
+  font-size: 1em;
+  transition: 0.3s;
+}
+.cart-btn:hover { background: var(--accent2); }
+.cart-count {
+  position: absolute;
+  top: -8px;
+  right: -8px;
+  background: var(--accent);
+  color: white;
+  font-size: 0.7em;
+  font-weight: 700;
+  border-radius: 50%;
+  width: 20px;
+  height: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.login-btn { position: relative; }
+.account-menu {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  background: var(--bg-panel);
+  padding: 8px 14px;
+  border-radius: var(--radius);
+  border: 1px solid var(--accent2);
+}
+.account-menu #accountName {
+  font-weight: 600;
+  color: var(--text);
+}
+.saldo-tag {
+  background: #111122;
+  color: #4ade80;
+  padding: 4px 10px;
+  border-radius: var(--radius);
+  font-size: 0.85em;
+  font-weight: 600;
+}
+.small-btn {
+  background: none;
+  border: 1px solid var(--accent);
+  color: var(--text);
+  padding: 5px 10px;
+  border-radius: var(--radius);
+  cursor: pointer;
+  font-size: 0.85em;
+  transition: 0.3s;
+}
+.small-btn:hover { background: var(--accent); }
+
+/* --- PANEL CARRITO --- */
+.cart-overlay {
+  display: none;
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.6);
+  z-index: 20;
+}
+.cart-overlay.active { display: block; }
+
+.cart-panel {
+  position: fixed;
+  top: 0;
+  right: -380px;
+  width: 360px;
+  height: 100%;
+  background: var(--bg-panel);
+  box-shadow: -4px 0 20px rgba(0,0,0,0.5);
+  z-index: 21;
+  display: flex;
+  flex-direction: column;
+  transition: right 0.3s ease;
+}
+.cart-panel.open { right: 0; }
+
+.cart-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 18px 20px;
+  border-bottom: 2px solid var(--accent);
+}
+.cart-header h3 { font-family: 'Orbitron', sans-serif; color: var(--accent); }
+#closeCart { cursor: pointer; font-size: 1.4em; color: var(--accent); }
+
+.cart-items {
+  flex: 1;
+  overflow-y: auto;
+  padding: 10px 20px;
+}
+.cart-item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 0;
+  border-bottom: 1px solid #222;
+}
+.cart-item img { width: 60px; height: 36px; object-fit: cover; border-radius: 4px; }
+.cart-item-info { flex: 1; }
+.cart-item-info h4 { font-size: 0.9em; }
+.cart-item-info p { color: var(--muted); font-size: 0.85em; }
+.cart-item-remove {
+  background: none;
+  border: none;
+  color: var(--accent);
+  cursor: pointer;
+  font-size: 1.1em;
+}
+.cart-empty { color: var(--muted); text-align: center; margin-top: 30px; }
+
+.cart-footer {
+  padding: 18px 20px;
+  border-top: 2px solid var(--accent);
+}
+.cart-total {
+  font-size: 1.1em;
+  font-weight: 600;
+  margin-bottom: 12px;
+  display: flex;
+  justify-content: space-between;
+}
+.cart-footer .cta {
+  width: 100%;
+  border: none;
+  border-radius: var(--radius);
+}
+
+/* --- TOASTS --- */
+.toast {
+  position: fixed;
+  bottom: 24px;
+  right: 24px;
+  background: var(--bg-panel);
+  border-left: 4px solid var(--accent);
+  padding: 14px 20px;
+  border-radius: var(--radius);
+  box-shadow: 0 0 20px rgba(0,0,0,0.5);
+  z-index: 50;
+  font-size: 0.95em;
+  animation: toast-in 0.3s ease;
+}
+.toast.error { border-left-color: #ff3b3b; }
+.toast.success { border-left-color: #4ade80; }
+@keyframes toast-in {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* --- DETALLE: precio y boton agregar --- */
+.detail-actions {
+  display: flex;
+  gap: 10px;
+  justify-content: center;
+  margin-top: 20px;
+}
+.detail-actions button {
+  border: none;
+  border-radius: var(--radius);
+  padding: 10px 22px;
+  font-weight: 600;
+  cursor: pointer;
+}
+.btn-add-cart {
+  background: var(--bg-panel);
+  border: 1px solid var(--accent2) !important;
+  color: var(--text);
+}
+.btn-add-cart:hover { background: var(--accent2); }
+.owned-tag {
+  display: inline-block;
+  background: #4ade80;
+  color: #0a0a14;
+  padding: 6px 16px;
+  border-radius: var(--radius);
+  font-weight: 700;
+  margin-top: 20px;
+}
+
+/* --- BIBLIOTECA --- */
+.biblioteca-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+}
+.empty-state {
+  text-align: center;
+  color: var(--muted);
+  padding: 60px 20px;
+}
+.empty-state .cta {
+  margin-top: 20px;
+  border: none;
+}
+/* === ESTILOS PASARELA DE PAGO === */
+.pasarela-content {
+  max-width: 450px !important;
+  background: #1b2838; /* Color oscuro estilo Steam */
+  border-radius: 12px;
+  border: 1px solid #2a475e;
+  padding: 30px;
+  color: #fff;
+}
+.pasarela-content h2 {
+  color: #66c0f4;
+  margin-bottom: 5px;
+  font-size: 1.5rem;
+}
+.subtitle {
+  color: #8495a7;
+  font-size: 0.9rem;
+  margin-bottom: 20px;
+}
+.form-group {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 15px;
+  text-align: left;
+}
+.form-group label {
+  font-size: 0.85rem;
+  color: #b8b6b4;
+  margin-bottom: 5px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+.form-group input {
+  background: #101822;
+  border: 1px solid #2a475e;
+  padding: 12px;
+  border-radius: 6px;
+  color: #fff;
+  font-size: 1rem;
+  outline: none;
+  transition: border 0.2s;
+}
+.form-group input:focus {
+  border-color: #66c0f4;
+}
+.form-row {
+  display: flex;
+  gap: 15px;
+}
+.half {
+  flex: 1;
+}
+.monto-group {
+  margin-top: 25px;
+  border-top: 1px solid #2a475e;
+  padding-top: 20px;
+}
+.monto-group input {
+  border-color: #47b230;
+  font-weight: bold;
+  color: #a3ff80;
+  font-size: 1.2rem;
+}
+.btn-pagar {
+  width: 100%;
+  background: linear-gradient( to right, #47b230 0%, #31871f 100%);
+  color: white;
+  border: none;
+  padding: 14px;
+  border-radius: 6px;
+  font-size: 1.1rem;
+  font-weight: bold;
+  cursor: pointer;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+  transition: transform 0.1s;
+}
+.btn-pagar:hover {
+  filter: brightness(1.1);
+}
+.btn-pagar:active {
+  transform: scale(0.98);
+}
